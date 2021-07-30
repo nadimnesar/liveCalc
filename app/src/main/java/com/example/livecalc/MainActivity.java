@@ -33,10 +33,80 @@ public class MainActivity extends AppCompatActivity {
     public Button equal;
     public Button add;
 
-    public double expretion_evaluation(String str){
-        Double res = 0.0;
+    public static double eval(final String str) {
+        return new Object() {
+            int pos = -1, ch;
 
-        return  res;
+            void nextChar() {
+                ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+            }
+
+            boolean eat(int charToEat) {
+                while (ch == ' ') nextChar();
+                if (ch == charToEat) {
+                    nextChar();
+                    return true;
+                }
+                return false;
+            }
+
+            double parse() {
+                nextChar();
+                double x = parseExpression();
+                if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char)ch);
+                return x;
+            }
+
+            double parseExpression() {
+                double x = parseTerm();
+                for (;;) {
+                    if      (eat('+')) x += parseTerm(); // addition
+                    else if (eat('-')) x -= parseTerm(); // subtraction
+                    else return x;
+                }
+            }
+
+            double parseTerm() {
+                double x = parseFactor();
+                for (;;) {
+                    if      (eat('*')) x *= parseFactor(); // multiplication
+                    else if (eat('/')) x /= parseFactor(); // division
+                    else return x;
+                }
+            }
+
+            double parseFactor() {
+                if (eat('+')) return parseFactor(); // unary plus
+                if (eat('-')) return -parseFactor(); // unary minus
+
+                double x;
+                int startPos = this.pos;
+                if (eat('(')) { // parentheses
+                    x = parseExpression();
+                    eat(')');
+                } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
+                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                    x = Double.parseDouble(str.substring(startPos, this.pos));
+                } else if (ch >= 'a' && ch <= 'z') { // functions
+                    while (ch >= 'a' && ch <= 'z') nextChar();
+                    String func = str.substring(startPos, this.pos);
+                    x = parseFactor();
+                    if (func.equals("sqrt")) x = Math.sqrt(x);
+                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
+                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
+                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                    else if (func.equals("log")) x = Math.log10(x);
+                    else if (func.equals("ln")) x = Math.log(x);
+                    else throw new RuntimeException("Unknown function: " + func);
+                } else {
+                    throw new RuntimeException("Unexpected: " + (char)ch);
+                }
+
+                if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
+
+                return x;
+            }
+        }.parse();
     }
 
     @Override
@@ -72,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty",Toast.LENGTH_SHORT).show();
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
                 else {
                     equation.setText("");
                     result.setText("");
@@ -83,13 +153,12 @@ public class MainActivity extends AppCompatActivity {
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty",Toast.LENGTH_SHORT).show();
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
                 else {
                     String str = equation.getText().toString();
                     str = str.substring(0, str.length() - 1);
                     equation.setText(str);
-
-                    //result er kaj ase
+                    result.setText("");
                 }
             }
         });
@@ -98,10 +167,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"(");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "(";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -109,10 +180,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+")");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + ")";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -120,10 +193,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"0");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "0";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -131,10 +206,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"1");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "1";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -142,10 +219,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"2");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "2";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -153,10 +232,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"3");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "3";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -164,10 +245,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"4");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "4";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -175,10 +258,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"5");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "5";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -186,10 +271,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"6");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "6";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -197,10 +284,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"7");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "7";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -208,10 +297,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"8");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "8";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -219,10 +310,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"9");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "9";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -230,10 +323,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"0");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "0";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -241,10 +336,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+".");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + ".";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -252,10 +349,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"÷");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "÷";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -263,10 +362,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"×");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "×";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -274,10 +375,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"-");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "-";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
@@ -285,17 +388,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"+");
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
-
-                //result er kaj ase
+                if(str.length() < 70) {
+                    str = str + "+";
+                    equation.setText(str);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                result.setText("");
             }
         });
 
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equation.setText(result.getText());
+                String str = equation.getText().toString();
+                str = str.replace('÷','/').replace('×','*');
+                result.setText(String.valueOf(eval(str)));
             }
         });
     }
