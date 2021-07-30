@@ -2,8 +2,10 @@ package com.example.livecalc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +62,218 @@ public class MainActivity extends AppCompatActivity {
         zero = findViewById(R.id.zero);
         equal = findViewById(R.id.equal);
         add = findViewById(R.id.add);
-    }
 
+        ac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                equation.setText("");
+                result.setText("");
+            }
+        });
+
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                str = str.substring(0, str.length()-1);
+                equation.setText(str);
+
+                //result er kaj ase
+            }
+        });
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"(");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+")");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        zero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"0");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"1");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"2");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"3");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"4");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        five.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"5");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        six.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"6");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        seven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"7");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        eight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"8");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        nine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"9");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        zero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"0");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"÷");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        multiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"×");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"−");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+"+");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
+        equal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                equation.setText(result.getText());
+            }
+        });
+    }
 }
