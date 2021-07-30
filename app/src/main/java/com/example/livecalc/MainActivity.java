@@ -101,12 +101,58 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     throw new RuntimeException("Unexpected: " + (char)ch);
                 }
-
                 if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
-
                 return x;
             }
         }.parse();
+    }
+
+    public boolean check(String str){
+        String restr = str;
+        boolean res = true;
+        while(true){
+            int idx = -1;
+            for(int i = 0; i < restr.length(); i++){
+                if(restr.charAt(i) == '(') idx = i;
+            }
+
+            if(idx == -1) break;
+
+            boolean flag = false;
+
+            for(int i = idx+1; i < restr.length(); i++){
+                if(restr.charAt(i) == ')'){
+                    restr = restr.substring(0, idx) + restr.substring(i+1, restr.length());
+                    flag = true;
+                    break;
+                }
+            }
+            if(!flag){
+                res = false;
+                break;
+            }
+        }
+
+        for(int i = 0; i < restr.length(); i++){
+            if(restr.charAt(i) == ')') return false;
+        }
+
+        if(!res) return false;
+
+        if(str.charAt(0) == '+' || str.charAt(0) == '-' || str.charAt(0) == '*' || str.charAt(0) == '/') return false;
+        if(str.charAt(str.length()-1) == '+' || str.charAt(str.length()-1) == '-' || str.charAt(str.length()-1) == '*' || str.charAt(str.length()-1) == '/') return false;
+
+        for(int i = 1; i < str.length(); i++){
+            if(str.charAt(i) == '+' && str.charAt(i-1) == '+') return false;
+            if(str.charAt(i) == '-' && str.charAt(i-1) == '-') return false;
+            if(str.charAt(i) == '*' && str.charAt(i-1) == '*') return false;
+            if(str.charAt(i) == '/' && str.charAt(i-1) == '/') return false;
+        }
+
+        for(int i = 1; i < str.length(); i++){
+            if(str.charAt(i) == '(' && str.charAt(i-1) == ')') return false;
+        }
+        return res;
     }
 
     @Override
@@ -158,7 +204,13 @@ public class MainActivity extends AppCompatActivity {
                     String str = equation.getText().toString();
                     str = str.substring(0, str.length() - 1);
                     equation.setText(str);
-                    result.setText("");
+
+                    if(str.length() == 0) result.setText("");
+                    else{
+                        str = str.replace('÷','/').replace('×','*');
+                        if(check(str)) result.setText(String.valueOf(eval(str)));
+                        else result.setText("Syntax Error!");
+                    }
                 }
             }
         });
@@ -172,7 +224,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -185,7 +240,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -198,7 +256,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -211,7 +272,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -224,7 +288,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -237,7 +304,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -250,7 +320,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -263,7 +336,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -276,7 +352,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -289,7 +368,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -302,7 +384,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -315,7 +400,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -328,7 +416,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -341,7 +432,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -354,7 +448,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -367,7 +464,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -380,7 +480,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -393,7 +496,10 @@ public class MainActivity extends AppCompatActivity {
                     equation.setText(str);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                result.setText("");
+
+                str = str.replace('÷','/').replace('×','*');
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
 
@@ -401,8 +507,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
+
                 str = str.replace('÷','/').replace('×','*');
-                result.setText(String.valueOf(eval(str)));
+                if(check(str)) result.setText(String.valueOf(eval(str)));
+                else result.setText("Syntax Error!");
             }
         });
     }
