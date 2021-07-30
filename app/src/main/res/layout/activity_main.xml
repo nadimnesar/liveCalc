@@ -48,278 +48,287 @@
         android:layout_width="match_parent">
         <LinearLayout
             android:orientation="vertical"
-            android:weightSum="5"
+            android:weightSum="100"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_weight="20"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="4"
+                    android:weightSum="100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/bac"
+                        android:id="@+id/ac"
                         android:text="@string/ac"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="acAction">
                     </Button>
                     <Button
-                        android:id="@+id/bc"
+                        android:id="@+id/c"
                         android:text="@string/c"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="cAction">
                     </Button>
                     <Button
-                        android:id="@+id/bb1"
+                        android:id="@+id/b1"
                         android:text="@string/b1"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="b1Action">
                     </Button>
                     <Button
-                        android:id="@+id/bb2"
+                        android:id="@+id/b2"
                         android:text="@string/b2"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="b2Action">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_weight="20"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="4"
+                    android:weightSum="100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/bseven"
+                        android:id="@+id/seven"
                         android:text="@string/seven"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="sevenAction">
                     </Button>
                     <Button
-                        android:id="@+id/beight"
+                        android:id="@+id/eight"
                         android:text="@string/eight"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="eightAction">
                     </Button>
                     <Button
-                        android:id="@+id/bnine"
+                        android:id="@+id/nine"
                         android:text="@string/nine"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="nineAction">
                     </Button>
                     <Button
-                        android:id="@+id/bdivide"
+                        android:id="@+id/divide"
                         android:text="@string/divide"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="divideAction">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_weight="20"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="4"
+                    android:weightSum="100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/bfour"
+                        android:id="@+id/four"
                         android:text="@string/four"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="fourAction">
                     </Button>
                     <Button
-                        android:id="@+id/bfive"
+                        android:id="@+id/five"
                         android:text="@string/five"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="fiveAction">
                     </Button>
                     <Button
-                        android:id="@+id/bsix"
+                        android:id="@+id/six"
                         android:text="@string/six"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="sixAction">
                     </Button>
                     <Button
-                        android:id="@+id/bmultiply"
+                        android:id="@+id/multiply"
                         android:text="@string/multiply"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="multiplyAction">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_weight="20"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="4"
+                    android:weightSum="100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/bone"
+                        android:id="@+id/one"
                         android:text="@string/one"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="oneAction">
                     </Button>
                     <Button
-                        android:id="@+id/btwo"
+                        android:id="@+id/two"
                         android:text="@string/two"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="twoAction">
 
                     </Button>
                     <Button
-                        android:id="@+id/bthree"
+                        android:id="@+id/three"
                         android:text="@string/three"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="threeAction">
                     </Button>
                     <Button
-                        android:id="@+id/bsub"
+                        android:id="@+id/sub"
                         android:text="@string/sub"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="match_parent"
+                        android:onClick="subAction">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_weight="20"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="4"
+                    android:weightSum="100"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/bdot"
+                        android:id="@+id/dot"
                         android:text="@string/dot"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="dotAction">
                     </Button>
                     <Button
-                        android:id="@+id/bzero"
+                        android:id="@+id/zero"
                         android:text="@string/zero"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/white"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="zeroAction">
                     </Button>
                     <Button
-                        android:id="@+id/bequal"
+                        android:id="@+id/equal"
                         android:text="@string/equal"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="equalAction">
                     </Button>
                     <Button
-                        android:id="@+id/badd"
+                        android:id="@+id/add"
                         android:text="@string/add"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:onClick="addAction">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
