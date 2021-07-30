@@ -69,8 +69,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="acAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/c"
@@ -80,8 +79,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="cAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/b1"
@@ -91,8 +89,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="b1Action">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/b2"
@@ -102,8 +99,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="b2Action">
+                        android:layout_height="match_parent">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
@@ -125,8 +121,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="sevenAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/eight"
@@ -136,8 +131,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="eightAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/nine"
@@ -147,8 +141,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="nineAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/divide"
@@ -158,8 +151,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="divideAction">
+                        android:layout_height="match_parent">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
@@ -181,8 +173,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="fourAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/five"
@@ -192,8 +183,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="fiveAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/six"
@@ -203,8 +193,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="sixAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/multiply"
@@ -214,8 +203,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="multiplyAction">
+                        android:layout_height="match_parent">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
@@ -237,8 +225,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="oneAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/two"
@@ -248,8 +235,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="twoAction">
+                        android:layout_height="match_parent">
 
                     </Button>
                     <Button
@@ -260,8 +246,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="threeAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/sub"
@@ -271,8 +256,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="subAction">
+                        android:layout_height="match_parent">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
@@ -294,8 +278,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="dotAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/zero"
@@ -305,8 +288,7 @@
                         android:textColor="@color/white"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="zeroAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/equal"
@@ -316,8 +298,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="equalAction">
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/add"
@@ -327,8 +308,7 @@
                         android:textColor="@color/orange"
                         android:layout_weight="25"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:onClick="addAction">
+                        android:layout_height="match_parent">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
