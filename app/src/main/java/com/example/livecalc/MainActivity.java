@@ -66,19 +66,25 @@ public class MainActivity extends AppCompatActivity {
         ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equation.setText("");
-                result.setText("");
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty",Toast.LENGTH_SHORT).show();
+                else {
+                    equation.setText("");
+                    result.setText("");
+                }
             }
         });
 
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = equation.getText().toString();
-                str = str.substring(0, str.length()-1);
-                equation.setText(str);
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty",Toast.LENGTH_SHORT).show();
+                else {
+                    String str = equation.getText().toString();
+                    str = str.substring(0, str.length() - 1);
+                    equation.setText(str);
 
-                //result er kaj ase
+                    //result er kaj ase
+                }
             }
         });
 
@@ -251,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) equation.setText(str+"−");
+                if(str.length() < 70) equation.setText(str+"-");
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
 
                 //result er kaj ase
@@ -276,4 +282,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
