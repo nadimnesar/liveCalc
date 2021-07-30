@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
     public Button equal;
     public Button add;
 
+    public double expretion_evaluation(String str){
+        Double res = 0.0;
+
+        return  res;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -231,6 +237,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) equation.setText(str+".");
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed",Toast.LENGTH_SHORT).show();
+
+                //result er kaj ase
+            }
+        });
+
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,6 +299,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
