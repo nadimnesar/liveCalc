@@ -139,18 +139,56 @@ public class MainActivity extends AppCompatActivity {
 
         if(!res) return false;
 
-        if(str.charAt(0) == '+' || str.charAt(0) == '-' || str.charAt(0) == '*' || str.charAt(0) == '/') return false;
-        if(str.charAt(str.length()-1) == '+' || str.charAt(str.length()-1) == '-' || str.charAt(str.length()-1) == '*' || str.charAt(str.length()-1) == '/') return false;
+        if(str.charAt(0) == '+' || str.charAt(0) == '-' || str.charAt(0) == '*' || str.charAt(0) == '/' ||  str.charAt(0) == '.' ) return false;
+        if(str.charAt(str.length()-1) == '+' || str.charAt(str.length()-1) == '-' || str.charAt(str.length()-1) == '*' || str.charAt(str.length()-1) == '/' || str.charAt(str.length()-1) == '.') return false;
 
         for(int i = 1; i < str.length(); i++){
             if(str.charAt(i) == '+' && str.charAt(i-1) == '+') return false;
+            if(str.charAt(i) == '+' && str.charAt(i-1) == '-') return false;
+            if(str.charAt(i) == '+' && str.charAt(i-1) == '*') return false;
+            if(str.charAt(i) == '+' && str.charAt(i-1) == '/') return false;
+
+            if(str.charAt(i-1) == '+' && str.charAt(i) == '+') return false;
+            if(str.charAt(i-1) == '+' && str.charAt(i) == '-') return false;
+            if(str.charAt(i-1) == '+' && str.charAt(i) == '*') return false;
+            if(str.charAt(i-1) == '+' && str.charAt(i) == '/') return false;
+
+            if(str.charAt(i) == '-' && str.charAt(i-1) == '+') return false;
             if(str.charAt(i) == '-' && str.charAt(i-1) == '-') return false;
+            if(str.charAt(i) == '-' && str.charAt(i-1) == '*') return false;
+            if(str.charAt(i) == '-' && str.charAt(i-1) == '/') return false;
+
+            if(str.charAt(i-1) == '-' && str.charAt(i) == '+') return false;
+            if(str.charAt(i-1) == '-' && str.charAt(i) == '-') return false;
+            if(str.charAt(i-1) == '-' && str.charAt(i) == '*') return false;
+            if(str.charAt(i-1) == '-' && str.charAt(i) == '/') return false;
+
+            if(str.charAt(i) == '*' && str.charAt(i-1) == '+') return false;
+            if(str.charAt(i) == '*' && str.charAt(i-1) == '-') return false;
             if(str.charAt(i) == '*' && str.charAt(i-1) == '*') return false;
+            if(str.charAt(i) == '*' && str.charAt(i-1) == '/') return false;
+
+            if(str.charAt(i-1) == '*' && str.charAt(i) == '+') return false;
+            if(str.charAt(i-1) == '*' && str.charAt(i) == '-') return false;
+            if(str.charAt(i-1) == '*' && str.charAt(i) == '*') return false;
+            if(str.charAt(i-1) == '*' && str.charAt(i) == '/') return false;
+
+            if(str.charAt(i) == '/' && str.charAt(i-1) == '+') return false;
+            if(str.charAt(i) == '/' && str.charAt(i-1) == '-') return false;
+            if(str.charAt(i) == '/' && str.charAt(i-1) == '*') return false;
             if(str.charAt(i) == '/' && str.charAt(i-1) == '/') return false;
+
+            if(str.charAt(i-1) == '/' && str.charAt(i) == '+') return false;
+            if(str.charAt(i-1) == '/' && str.charAt(i) == '-') return false;
+            if(str.charAt(i-1) == '/' && str.charAt(i) == '*') return false;
+            if(str.charAt(i-1) == '/' && str.charAt(i) == '/') return false;
+
+
+            if(str.charAt(i) == '.' && str.charAt(i-1) == '.') return false;
         }
 
         for(int i = 1; i < str.length(); i++){
-            if(str.charAt(i) == '(' && str.charAt(i-1) == ')') return false;
+            if(str.charAt(i-1) == '(' && str.charAt(i) == ')') return false;
         }
         return res;
     }
@@ -508,9 +546,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
 
-                str = str.replace('÷','/').replace('×','*');
-                if(check(str)) result.setText(String.valueOf(eval(str)));
-                else result.setText("Syntax Error!");
+                if(str.length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
+                else{
+                    str = str.replace('÷','/').replace('×','*');
+                    if(check(str)) equation.setText(result.getText());
+                    else result.setText("Syntax Error!");
+                }
             }
         });
     }
