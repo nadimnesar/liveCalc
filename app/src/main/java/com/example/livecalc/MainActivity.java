@@ -522,15 +522,8 @@ public class MainActivity extends AppCompatActivity {
                 String str = equation.getText().toString();
 
                 if(str.length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
-                else{
-                    str = str.replace('÷','/').replace('×','*');
-                    try{
-                        result.setText(String.valueOf(eval(str)));
-                    }
-                    catch (Exception e){
-                        result.setText("Syntax Error!");
-                    }
-                }
+                else if(result.getText().toString() == "Syntax Error!") Toast.makeText(getApplicationContext(),"Syntax Error!",Toast.LENGTH_SHORT).show();
+                else equation.setText(result.getText());
             }
         });
     }
