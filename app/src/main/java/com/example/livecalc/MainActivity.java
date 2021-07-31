@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     x = Double.parseDouble(str.substring(startPos, this.pos));
                 }
                 else throw new RuntimeException("Unexpected: " + (char)ch);
-                if (eat('^')) x = Math.pow(x, parseFactor());
                 return x;
             }
         }.parse();
