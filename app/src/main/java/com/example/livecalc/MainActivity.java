@@ -11,46 +11,62 @@ import org.mariuszgromada.math.mxparser.*;
 
 public class MainActivity extends AppCompatActivity {
 
+    public TextView degrad;
     public EditText equation;
     public TextView result;
 
-    public Button mod;
-    public Button c;
-    public Button b1;
-    public Button b2;
-    public Button seven;
-    public Button eight;
-    public Button nine;
-    public Button divide;
-    public Button four;
-    public Button five;
-    public Button six;
-    public Button multiply;
-    public Button one;
-    public Button two;
-    public Button three;
-    public Button sub;
-    public Button dot;
-    public Button zero;
-    public Button pow;
-    public Button add;
-    public Button equal;
+    public Button degree;
+    public Button radian;
     public Button gcd;
     public Button lcm;
-    public Button factorial;
+    public Button mod;
     public Button sqrt;
-    public Button pi;
+
     public Button sin;
     public Button cos;
     public Button tan;
     public Button log;
     public Button e;
+    public Button pi;
+
+    public Button c;
+    public Button ac;
+    public Button pow;
+    public Button factorial;
+    public Button b1;
+    public Button b2;
+
+    public Button seven;
+    public Button eight;
+    public Button nine;
+    public Button divide;
+
+    public Button four;
+    public Button five;
+    public Button six;
+    public Button multiply;
+
+    public Button one;
+    public Button two;
+    public Button three;
+    public Button sub;
+
+    public Button dot;
+    public Button zero;
+    public Button add;
+    public Button equal;
+
+    public boolean deg = true;
+    public boolean rad = false;
 
     public double evaluate(String str) {
         str = str.replace('÷','/').replace('×','*');
-        str = str.replaceAll("nCr", "C").replaceAll("nPr", "P").replaceAll("π", "pi").replaceAll("mod", "#");
+        str = str.replaceAll("π", "pi").replaceAll("mod", "#");
         Expression exp = new Expression(str);
-        mXparser.setDegreesMode();
+
+        if(deg) mXparser.setDegreesMode();
+        else if(rad) mXparser.setRadiansMode();
+
         return exp.calculate();
     }
 
@@ -60,129 +76,148 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        degrad = findViewById(R.id.degrad);
         equation = findViewById(R.id.equation);
-        result = findViewById(R.id.result);
         equation.setShowSoftInputOnFocus(false);
+        result = findViewById(R.id.result);
 
-        mod = findViewById(R.id.mod);
-        c = findViewById(R.id.c);
-        b1 = findViewById(R.id.b1);
-        b2 = findViewById(R.id.b2);
-        seven = findViewById(R.id.seven);
-        eight = findViewById(R.id.eight);
-        nine = findViewById(R.id.nine);
-        divide = findViewById(R.id.divide);
-        four = findViewById(R.id.four);
-        five = findViewById(R.id.five);
-        six = findViewById(R.id.six);
-        multiply = findViewById(R.id.multiply);
-        one = findViewById(R.id.one);
-        two = findViewById(R.id.two);
-        three = findViewById(R.id.three);
-        sub = findViewById(R.id.sub);
-        dot = findViewById(R.id.dot);
-        zero = findViewById(R.id.zero);
-        pow = findViewById(R.id.pow);
-        add = findViewById(R.id.add);
-        equal = findViewById(R.id.equal);
+        degree = findViewById(R.id.degree);
+        radian = findViewById(R.id.radian);
         gcd = findViewById(R.id.gcd);
         lcm = findViewById(R.id.lcm);
-        factorial = findViewById(R.id.factorial);
+        mod = findViewById(R.id.mod);
         sqrt = findViewById(R.id.sqrt);
-        pi = findViewById(R.id.pi);
+
         sin = findViewById(R.id.sin);
         cos = findViewById(R.id.cos);
         tan = findViewById(R.id.tan);
         log = findViewById(R.id.log);
         e = findViewById(R.id.e);
+        pi = findViewById(R.id.pi);
 
+        c = findViewById(R.id.c);
+        ac = findViewById(R.id.ac);
+        pow = findViewById(R.id.pow);
+        factorial = findViewById(R.id.factorial);
+        b1 = findViewById(R.id.b1);
+        b2 = findViewById(R.id.b2);
+
+        seven = findViewById(R.id.seven);
+        eight = findViewById(R.id.eight);
+        nine = findViewById(R.id.nine);
+        divide = findViewById(R.id.divide);
+
+        four = findViewById(R.id.four);
+        five = findViewById(R.id.five);
+        six = findViewById(R.id.six);
+        multiply = findViewById(R.id.multiply);
+
+        one = findViewById(R.id.one);
+        two = findViewById(R.id.two);
+        three = findViewById(R.id.three);
+        sub = findViewById(R.id.sub);
+
+        dot = findViewById(R.id.dot);
+        zero = findViewById(R.id.zero);
+        equal = findViewById(R.id.equal);
+        add = findViewById(R.id.add);
+
+        degree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deg = true;
+                rad = false;
+                degrad.setText("DEGREE");
+
+                String str = equation.getText().toString();
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
+            }
+        });
+        radian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deg = false;
+                rad = true;
+                degrad.setText("REDIAN");
+
+                String str = equation.getText().toString();
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
+            }
+        });
         gcd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"gcd(,)"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"gcd(,)"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         lcm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"lcm(,)"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"lcm(,)"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
-        factorial.setOnClickListener(new View.OnClickListener() {
+        mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"!"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr + "mod" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+3);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         sqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"sqrt()"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
-            }
-        });
 
-        pi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"π"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"sqrt()"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
 
@@ -190,115 +225,125 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"sin()"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"sin()"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         cos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"cos()"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"cos()"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         tan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"tan()"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"tan()"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"log(,)"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+4);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"log(,)"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+4);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         e.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"e"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"e"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
-        c.setOnClickListener(new View.OnClickListener() {
+        pi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
-                else {
-                    String str = equation.getText().toString();
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    leftstr = leftstr.substring(0, leftstr.length() - 1);
-                    str = leftstr + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos-1);
-                    if(str.length() == 0) result.setText("");
-                    else result.setText(String.valueOf(evaluate(str)));
-                }
+                String str = equation.getText().toString();
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"π"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
 
-        c.setOnLongClickListener(new View.OnLongClickListener() {
+        ac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
+                else {
+                    equation.setText("");
+                    result.setText("");
+                }
+            }
+        });
+        ac.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
                 else {
                     equation.setText("");
                     result.setText("");
@@ -306,390 +351,393 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
+                else {
+                    String str = equation.getText().toString();
 
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+                    leftstr = leftstr.substring(0, leftstr.length() - 1);
+
+                    str = leftstr + rightstr;
+                    equation.setText(str);
+                    equation.setSelection(curpos-1);
+
+                    if(str.length() == 0) result.setText("");
+                    else{
+                        str = String.valueOf(evaluate(str));
+                        if(str == "NaN") result.setText("");
+                        else result.setText(str);
+                    }
+                }
+            }
+        });
+        c.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
+                else {
+                    equation.setText("");
+                    result.setText("");
+                }
+                return true;
+            }
+        });
+        pow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr + "^" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
+            }
+        });
+        factorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"!"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
+            }
+        });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+"("+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+"("+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr+")"+rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr+")"+rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
+
 
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    str = leftstr + "0" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
+
+                str = leftstr + "0" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "1" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "1" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "2" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "2" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "3" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "3" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "4" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "4" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "5" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "5" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "6" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "6" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "7" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "7" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "8" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "8" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "9" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "9" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "." + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "." + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "÷" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "÷" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "×" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "×" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "-" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "-" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
 
-                    str = leftstr + "+" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                int curpos = equation.getSelectionStart();
+                String leftstr = str.substring(0, curpos);
+                String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
+                str = leftstr + "+" + rightstr;
+                equation.setText(str);
+                equation.setSelection(curpos+1);
+
+                str = String.valueOf(evaluate(str));
+                if(str == "NaN") result.setText("");
+                else result.setText(str);
             }
         });
-
-        pow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-
-                    str = leftstr + "^" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+1);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
-            }
-        });
-
-        mod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-
-                    str = leftstr + "mod" + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos+3);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
-
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
-            }
-        });
-
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
-                else if(result.getText().toString() == "NaN") Toast.makeText(getApplicationContext(),"Syntax Error!",Toast.LENGTH_SHORT).show();
+                else if(result.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Syntax Error!",Toast.LENGTH_SHORT).show();
                 else {
                     equation.setText(result.getText().toString());
                     equation.setSelection(result.getText().toString().length());

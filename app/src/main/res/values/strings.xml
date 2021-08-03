@@ -25,7 +25,7 @@
 
     <string name="gcd">gcd</string>
     <string name="lcm">lcm</string>
-    <string name="sqrt">sqrt</string>
+    <string name="sqrt">√</string>
     <string name="factorial">!</string>
     <string name="pi">π</string>
 

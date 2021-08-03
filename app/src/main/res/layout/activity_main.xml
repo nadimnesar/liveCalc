@@ -8,6 +8,21 @@
     android:weightSum="100"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/degrad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@color/black"
+        android:textAlignment="center"
+        android:textColor="@color/gray"
+        android:text="DEGREE"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingEnd="150dp"
+        android:textSize="15sp">
+    </TextView>
+
     <EditText
         android:id="@+id/equation"
         android:layout_width="match_parent"
@@ -22,7 +37,8 @@
         android:paddingStart="15dp"
         android:paddingTop="10dp"
         android:gravity="bottom"
-        android:layout_weight="20" />
+        android:maxLines="2"
+        android:layout_weight="15" />
 
     <TextView
         android:id="@+id/result"
@@ -31,7 +47,7 @@
         android:background="@color/black"
         android:text=""
         android:textColor="@color/gray"
-        android:textSize="30sp"
+        android:textSize="29sp"
         android:textAlignment="viewEnd"
         android:paddingBottom="10dp"
         android:paddingEnd="15dp"
@@ -63,9 +79,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/deg"
+                        android:id="@+id/degree"
                         android:textAllCaps="false"
                         android:text="@string/deg"
+                        android:textSize="28sp"
+                        android:background="@color/black"
+                        android:textColor="@color/orange"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </Button>
+                    <Button
+                        android:id="@+id/radian"
+                        android:textAllCaps="false"
+                        android:text="@string/rad"
                         android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
@@ -95,17 +122,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
-                    <Button
-                        android:id="@+id/sqrt"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@color/black"
-                        android:textAllCaps="false"
-                        android:text="@string/sqrt"
-                        android:textColor="@color/orange"
-                        android:textSize="28sp">
-                    </Button>
+
                     <Button
                         android:id="@+id/mod"
                         android:layout_width="match_parent"
@@ -117,17 +134,19 @@
                         android:textColor="@color/orange"
                         android:textSize="28sp">
                     </Button>
+
                     <Button
-                        android:id="@+id/factorial"
-                        android:textAllCaps="false"
-                        android:text="@string/factorial"
-                        android:textSize="28sp"
-                        android:background="@color/black"
-                        android:textColor="@color/orange"
-                        android:layout_weight="1"
+                        android:id="@+id/sqrt"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/black"
+                        android:textAllCaps="false"
+                        android:text="@string/sqrt"
+                        android:textColor="@color/orange"
+                        android:textSize="28sp">
                     </Button>
+
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -142,9 +161,9 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/rad"
+                        android:id="@+id/pi"
                         android:textAllCaps="false"
-                        android:text="@string/rad"
+                        android:text="@string/pi"
                         android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
@@ -256,9 +275,9 @@
                         android:layout_height="match_parent">
                     </Button>
                     <Button
-                        android:id="@+id/pi"
+                        android:id="@+id/factorial"
                         android:textAllCaps="false"
-                        android:text="@string/pi"
+                        android:text="@string/factorial"
                         android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
@@ -266,6 +285,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
+
                     <Button
                         android:id="@+id/b1"
                         android:text="@string/b1"
