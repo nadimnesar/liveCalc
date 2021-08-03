@@ -4,16 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.mariuszgromada.math.mxparser.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    public TextView equation;
+    public EditText equation;
     public TextView result;
 
-    public Button ac;
+    public Button mod;
     public Button c;
     public Button b1;
     public Button b2;
@@ -31,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
     public Button sub;
     public Button dot;
     public Button zero;
-    public Button equal;
+    public Button pow;
     public Button add;
 
     public double evaluate(String str) {
-        str = str.replace('÷','/').replace('×','*');
+        str = str.replace('÷','/').replace('×','*').replace('%', '#');
         Expression exp = new Expression(str);
         return exp.calculate();
     }
@@ -49,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         equation = findViewById(R.id.equation);
         result = findViewById(R.id.result);
 
-        ac = findViewById(R.id.ac);
+        equation.setShowSoftInputOnFocus(false);
+
+        mod = findViewById(R.id.mod);
         c = findViewById(R.id.c);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
@@ -67,19 +70,8 @@ public class MainActivity extends AppCompatActivity {
         sub = findViewById(R.id.sub);
         dot = findViewById(R.id.dot);
         zero = findViewById(R.id.zero);
-        equal = findViewById(R.id.equal);
+        pow = findViewById(R.id.pow);
         add = findViewById(R.id.add);
-
-        ac.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
-                else {
-                    equation.setText("");
-                    result.setText("");
-                }
-            }
-        });
 
         c.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +79,28 @@ public class MainActivity extends AppCompatActivity {
                 if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
                 else {
                     String str = equation.getText().toString();
-                    str = str.substring(0, str.length() - 1);
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+                    leftstr = leftstr.substring(0, leftstr.length() - 1);
+                    str = leftstr + rightstr;
                     equation.setText(str);
-
+                    equation.setSelection(curpos-1);
                     if(str.length() == 0) result.setText("");
                     else result.setText(String.valueOf(evaluate(str)));
                 }
+            }
+        });
+
+        c.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(equation.getText().toString().length() == 0) Toast.makeText(getApplicationContext(),"Already Empty!",Toast.LENGTH_SHORT).show();
+                else {
+                    equation.setText("");
+                    result.setText("");
+                }
+                return true;
             }
         });
 
@@ -101,8 +109,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "(";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+                    str = leftstr+"("+rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -116,8 +128,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + ")";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+                    str = leftstr+")"+rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -131,8 +147,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "0";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+                    str = leftstr + "0" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -146,8 +166,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "1";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "1" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -161,8 +186,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "2";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "2" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -176,8 +206,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "3";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "3" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -191,8 +226,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "4";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "4" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -206,8 +246,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "5";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "5" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -221,8 +266,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "6";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "6" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -236,8 +286,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "7";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "7" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -251,8 +306,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "8";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "8" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -266,23 +326,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "9";
-                    equation.setText(str);
-                }
-                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) result.setText("");
-                else result.setText(String.valueOf(evaluate(str)));
-            }
-        });
-
-        zero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = equation.getText().toString();
-                if(str.length() < 70) {
-                    str = str + "0";
+                    str = leftstr + "9" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -296,8 +346,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + ".";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "." + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -311,8 +366,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "÷";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "÷" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -326,8 +386,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "×";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "×" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -341,8 +406,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "-";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "-" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -356,8 +426,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = equation.getText().toString();
                 if(str.length() < 70) {
-                    str = str + "+";
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "+" + rightstr;
                     equation.setText(str);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
@@ -366,14 +441,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        equal.setOnClickListener(new View.OnClickListener() {
+        pow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
+                if(str.length() < 70) {
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
 
-                if(str.length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
-                else if(result.getText().toString() == "Syntax Error!") Toast.makeText(getApplicationContext(),"Syntax Error!",Toast.LENGTH_SHORT).show();
-                else equation.setText(result.getText());
+                    str = leftstr + "^" + rightstr;
+                    equation.setText(str);
+                    equation.setSelection(curpos+1);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+
+                if(str.length() == 0) result.setText("");
+                else result.setText(String.valueOf(evaluate(str)));
+            }
+        });
+
+        mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() < 70) {
+                    int curpos = equation.getSelectionStart();
+                    String leftstr = str.substring(0, curpos);
+                    String rightstr = str.substring(curpos);
+
+                    str = leftstr + "%" + rightstr;
+                    equation.setText(str);
+                    equation.setSelection(curpos+1);
+                }
+                else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
+
+                if(str.length() == 0) result.setText("");
+                else result.setText(String.valueOf(evaluate(str)));
             }
         });
     }
