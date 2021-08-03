@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public Button zero;
     public Button pow;
     public Button add;
+    public Button equal;
 
     public double evaluate(String str) {
         str = str.replace('÷','/').replace('×','*').replace('%', '#');
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         zero = findViewById(R.id.zero);
         pow = findViewById(R.id.pow);
         add = findViewById(R.id.add);
+        equal = findViewById(R.id.equal);
 
         c.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -478,6 +480,19 @@ public class MainActivity extends AppCompatActivity {
 
                 if(str.length() == 0) result.setText("");
                 else result.setText(String.valueOf(evaluate(str)));
+            }
+        });
+
+        equal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = equation.getText().toString();
+                if(str.length() == 0) Toast.makeText(getApplicationContext(),"Empty!",Toast.LENGTH_SHORT).show();
+                else if(result.getText().toString() == "NaN") Toast.makeText(getApplicationContext(),"Syntax Error!",Toast.LENGTH_SHORT).show();
+                else {
+                    equation.setText(result.getText().toString());
+                    equation.setSelection(result.getText().toString().length());
+                }
             }
         });
     }
