@@ -22,4 +22,17 @@
     <string name="b1">(</string>
     <string name="b2">)</string>
     <string name="pow">^</string>
+
+    <string name="gcd">gcd</string>
+    <string name="lcm">lcm</string>
+    <string name="ncr">nCr</string>
+    <string name="npr">nPr</string>
+    <string name="pi">π</string>
+
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="log">log</string>
+    <string name="e">e</string>
+
 </resources>
