@@ -59,17 +59,28 @@
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="100"
+                    android:weightSum="6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/deg"
+                        android:textAllCaps="false"
+                        android:text="@string/deg"
+                        android:textSize="28sp"
+                        android:background="@color/black"
+                        android:textColor="@color/orange"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </Button>
                     <Button
                         android:id="@+id/gcd"
                         android:textAllCaps="false"
                         android:text="@string/gcd"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -77,10 +88,10 @@
                         android:id="@+id/lcm"
                         android:text="@string/lcm"
                         android:textAllCaps="false"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -88,32 +99,32 @@
                         android:id="@+id/sqrt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:background="@color/black"
                         android:textAllCaps="false"
                         android:text="@string/sqrt"
                         android:textColor="@color/orange"
-                        android:textSize="30sp">
+                        android:textSize="28sp">
                     </Button>
                     <Button
                         android:id="@+id/mod"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:background="@color/black"
                         android:textAllCaps="false"
                         android:text="@string/mod"
                         android:textColor="@color/orange"
-                        android:textSize="30sp">
+                        android:textSize="28sp">
                     </Button>
                     <Button
                         android:id="@+id/factorial"
                         android:textAllCaps="false"
                         android:text="@string/factorial"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -126,18 +137,30 @@
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="100"
+                    android:weightSum="6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/rad"
+                        android:textAllCaps="false"
+                        android:text="@string/rad"
+                        android:textSize="28sp"
+                        android:background="@color/black"
+                        android:textColor="@color/orange"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </Button>
 
                     <Button
                         android:id="@+id/sin"
                         android:textAllCaps="false"
                         android:text="@string/sin"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -146,10 +169,10 @@
                         android:id="@+id/cos"
                         android:textAllCaps="false"
                         android:text="@string/cos"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -159,21 +182,21 @@
                         android:textAllCaps="false"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:background="@color/black"
                         android:text="@string/tan"
                         android:textColor="@color/orange"
-                        android:textSize="30sp">
+                        android:textSize="28sp">
                     </Button>
 
                     <Button
                         android:id="@+id/log"
                         android:textAllCaps="false"
                         android:text="@string/log"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -182,10 +205,10 @@
                         android:id="@+id/e"
                         android:textAllCaps="false"
                         android:text="@string/e"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -199,26 +222,36 @@
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:weightSum="100"
+                    android:weightSum="6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <Button
-                        android:id="@+id/c"
-                        android:text="@string/c"
-                        android:textSize="30sp"
+                        android:id="@+id/ac"
+                        android:text="@string/ac"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </Button>
+                    <Button
+                        android:id="@+id/c"
+                        android:text="@string/c"
+                        android:textSize="28sp"
+                        android:background="@color/black"
+                        android:textColor="@color/orange"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/pow"
                         android:text="@string/pow"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
@@ -226,30 +259,30 @@
                         android:id="@+id/pi"
                         android:textAllCaps="false"
                         android:text="@string/pi"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/b1"
                         android:text="@string/b1"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/b2"
                         android:text="@string/b2"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </Button>

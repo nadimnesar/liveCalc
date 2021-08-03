@@ -35,4 +35,8 @@
     <string name="log">log</string>
     <string name="e">e</string>
 
+    <string name="deg">deg</string>
+    <string name="rad">rad</string>
+    <string name="ac">AC</string>
+
 </resources>
