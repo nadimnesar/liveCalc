@@ -11,53 +11,18 @@ import org.mariuszgromada.math.mxparser.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    public TextView degrad;
+    public TextView degrad, result;
     public EditText equation;
-    public TextView result;
 
-    public Button degree;
-    public Button radian;
-    public Button gcd;
-    public Button lcm;
-    public Button mod;
-    public Button sqrt;
+    public Button degree, radian, gcd, lcm, mod, sqrt;
+    public Button sin, cos, tan, log, e, pi;
+    public Button c, ac, pow, factorial, b1, b2;
+    public Button seven, eight, nine, divide;
+    public Button four, five, six, multiply;
+    public Button one, two, three, sub;
+    public Button dot, zero, add, equal;
 
-    public Button sin;
-    public Button cos;
-    public Button tan;
-    public Button log;
-    public Button e;
-    public Button pi;
-
-    public Button c;
-    public Button ac;
-    public Button pow;
-    public Button factorial;
-    public Button b1;
-    public Button b2;
-
-    public Button seven;
-    public Button eight;
-    public Button nine;
-    public Button divide;
-
-    public Button four;
-    public Button five;
-    public Button six;
-    public Button multiply;
-
-    public Button one;
-    public Button two;
-    public Button three;
-    public Button sub;
-
-    public Button dot;
-    public Button zero;
-    public Button add;
-    public Button equal;
-
-    public boolean deg = true;
-    public boolean rad = false;
+    public boolean deg = true, rad = false;
 
     public double evaluate(String str) {
         str = str.replace('÷','/').replace('×','*');
@@ -220,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 else result.setText(str);
             }
         });
-
         sin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -329,7 +293,6 @@ public class MainActivity extends AppCompatActivity {
                 else result.setText(str);
             }
         });
-
         ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -459,8 +422,6 @@ public class MainActivity extends AppCompatActivity {
                 else result.setText(str);
             }
         });
-
-
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
