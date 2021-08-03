@@ -21,4 +21,5 @@
     <string name="c">C</string>
     <string name="b1">(</string>
     <string name="b2">)</string>
+    <string name="pow">^</string>
 </resources>
