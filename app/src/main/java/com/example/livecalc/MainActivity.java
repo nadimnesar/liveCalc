@@ -45,43 +45,36 @@ public class MainActivity extends AppCompatActivity {
         equation = findViewById(R.id.equation);
         equation.setShowSoftInputOnFocus(false);
         result = findViewById(R.id.result);
-
         degree = findViewById(R.id.degree);
         radian = findViewById(R.id.radian);
         gcd = findViewById(R.id.gcd);
         lcm = findViewById(R.id.lcm);
         mod = findViewById(R.id.mod);
         sqrt = findViewById(R.id.sqrt);
-
         sin = findViewById(R.id.sin);
         cos = findViewById(R.id.cos);
         tan = findViewById(R.id.tan);
         log = findViewById(R.id.log);
         e = findViewById(R.id.e);
         pi = findViewById(R.id.pi);
-
         c = findViewById(R.id.c);
         ac = findViewById(R.id.ac);
         pow = findViewById(R.id.pow);
         factorial = findViewById(R.id.factorial);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
-
         seven = findViewById(R.id.seven);
         eight = findViewById(R.id.eight);
         nine = findViewById(R.id.nine);
         divide = findViewById(R.id.divide);
-
         four = findViewById(R.id.four);
         five = findViewById(R.id.five);
         six = findViewById(R.id.six);
         multiply = findViewById(R.id.multiply);
-
         one = findViewById(R.id.one);
         two = findViewById(R.id.two);
         three = findViewById(R.id.three);
         sub = findViewById(R.id.sub);
-
         dot = findViewById(R.id.dot);
         zero = findViewById(R.id.zero);
         equal = findViewById(R.id.equal);
@@ -178,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
                 str = leftstr+"sqrt()"+rightstr;
                 equation.setText(str);
-                equation.setSelection(curpos+4);
+                equation.setSelection(curpos+5);
 
                 str = String.valueOf(evaluate(str));
                 if(str == "NaN") result.setText("");
