@@ -17,7 +17,7 @@
     <string name="divide">÷</string>
     <string name="equal">=</string>
     <string name="dot">•</string>
-    <string name="mod">%</string>
+    <string name="mod">mod</string>
     <string name="c">C</string>
     <string name="b1">(</string>
     <string name="b2">)</string>
@@ -25,8 +25,8 @@
 
     <string name="gcd">gcd</string>
     <string name="lcm">lcm</string>
-    <string name="ncr">nCr</string>
-    <string name="npr">nPr</string>
+    <string name="sqrt">sqrt</string>
+    <string name="factorial">!</string>
     <string name="pi">π</string>
 
     <string name="sin">sin</string>

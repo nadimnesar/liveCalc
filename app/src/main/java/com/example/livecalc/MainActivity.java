@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public Button equal;
     public Button gcd;
     public Button lcm;
-    public Button ncr;
-    public Button npr;
+    public Button factorial;
+    public Button sqrt;
     public Button pi;
     public Button sin;
     public Button cos;
@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         equal = findViewById(R.id.equal);
         gcd = findViewById(R.id.gcd);
         lcm = findViewById(R.id.lcm);
-        ncr = findViewById(R.id.ncr);
-        npr = findViewById(R.id.npr);
+        factorial = findViewById(R.id.factorial);
+        sqrt = findViewById(R.id.sqrt);
         pi = findViewById(R.id.pi);
         sin = findViewById(R.id.sin);
         cos = findViewById(R.id.cos);
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ncr.setOnClickListener(new View.OnClickListener() {
+        factorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
@@ -140,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
                     int curpos = equation.getSelectionStart();
                     String leftstr = str.substring(0, curpos);
                     String rightstr = str.substring(curpos);
-                    str = leftstr+"nCr(,)"+rightstr;
+                    str = leftstr+"!"+rightstr;
                     equation.setText(str);
-                    equation.setSelection(curpos+4);
+                    equation.setSelection(curpos+1);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
                 if(str.length() == 0) result.setText("");
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        npr.setOnClickListener(new View.OnClickListener() {
+        sqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String str = equation.getText().toString();
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     int curpos = equation.getSelectionStart();
                     String leftstr = str.substring(0, curpos);
                     String rightstr = str.substring(curpos);
-                    str = leftstr+"nPr(,)"+rightstr;
+                    str = leftstr+"sqrt()"+rightstr;
                     equation.setText(str);
                     equation.setSelection(curpos+4);
                 }

@@ -85,31 +85,31 @@
                         android:layout_height="match_parent">
                     </Button>
                     <Button
-                        android:id="@+id/ncr"
+                        android:id="@+id/sqrt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="20"
                         android:background="@color/black"
                         android:textAllCaps="false"
-                        android:text="@string/ncr"
+                        android:text="@string/sqrt"
                         android:textColor="@color/orange"
                         android:textSize="30sp">
                     </Button>
                     <Button
-                        android:id="@+id/npr"
-                        android:textAllCaps="false"
-                        android:text="@string/npr"
-                        android:textSize="30sp"
-                        android:background="@color/black"
-                        android:textColor="@color/orange"
-                        android:layout_weight="20"
+                        android:id="@+id/mod"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:background="@color/black"
+                        android:textAllCaps="false"
+                        android:text="@string/mod"
+                        android:textColor="@color/orange"
+                        android:textSize="30sp">
                     </Button>
                     <Button
-                        android:id="@+id/pi"
+                        android:id="@+id/factorial"
                         android:textAllCaps="false"
-                        android:text="@string/pi"
+                        android:text="@string/factorial"
                         android:textSize="30sp"
                         android:background="@color/black"
                         android:textColor="@color/orange"
@@ -223,14 +223,15 @@
                         android:layout_height="match_parent">
                     </Button>
                     <Button
-                        android:id="@+id/mod"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20"
+                        android:id="@+id/pi"
+                        android:textAllCaps="false"
+                        android:text="@string/pi"
+                        android:textSize="30sp"
                         android:background="@color/black"
-                        android:text="@string/mod"
                         android:textColor="@color/orange"
-                        android:textSize="30sp">
+                        android:layout_weight="20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                     </Button>
                     <Button
                         android:id="@+id/b1"
