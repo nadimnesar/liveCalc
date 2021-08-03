@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public Button e;
 
     public double evaluate(String str) {
-        str = str.replace('÷','/').replace('×','*').replace('%', '#');
-        str = str.replaceAll("nCr", "C").replaceAll("nPr", "P").replaceAll("π", "pi");
+        str = str.replace('÷','/').replace('×','*');
+        str = str.replaceAll("nCr", "C").replaceAll("nPr", "P").replaceAll("π", "pi").replaceAll("mod", "#");
         Expression exp = new Expression(str);
         mXparser.setDegreesMode();
         return exp.calculate();
@@ -673,9 +673,9 @@ public class MainActivity extends AppCompatActivity {
                     String leftstr = str.substring(0, curpos);
                     String rightstr = str.substring(curpos);
 
-                    str = leftstr + "%" + rightstr;
+                    str = leftstr + "mod" + rightstr;
                     equation.setText(str);
-                    equation.setSelection(curpos+1);
+                    equation.setSelection(curpos+3);
                 }
                 else Toast.makeText(getApplicationContext(),"Max Limit Executed!",Toast.LENGTH_SHORT).show();
 
