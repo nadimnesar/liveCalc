@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean deg = true, rad = false;
 
-    public double evaluate(String str) {
+    public String evaluate(String str) {
         str = str.replace('÷','/').replace('×','*');
         str = str.replaceAll("π", "pi").replaceAll("mod", "#");
         Expression exp = new Expression(str);
@@ -32,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         if(deg) mXparser.setDegreesMode();
         else if(rad) mXparser.setRadiansMode();
 
-        return exp.calculate();
+        String res = String.valueOf(exp.calculate());
+        if(res.charAt(res.length()-1) == '0' && res.charAt(res.length()-2) == '.') res = res.substring(0, res.length()-2);
+
+        return res;
     }
 
     @Override
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 degrad.setText("DEGREE");
 
                 String str = equation.getText().toString();
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -101,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 degrad.setText("REDIAN");
 
                 String str = equation.getText().toString();
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -119,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+4);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+4);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -155,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+3);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+5);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -191,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+4);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -209,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+4);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+4);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -245,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+4);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -263,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -281,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -315,19 +318,22 @@ public class MainActivity extends AppCompatActivity {
                     String str = equation.getText().toString();
 
                     int curpos = equation.getSelectionStart();
-                    String leftstr = str.substring(0, curpos);
-                    String rightstr = str.substring(curpos);
-                    leftstr = leftstr.substring(0, leftstr.length() - 1);
-
-                    str = leftstr + rightstr;
-                    equation.setText(str);
-                    equation.setSelection(curpos-1);
-
-                    if(str.length() == 0) result.setText("");
+                    if(curpos == 0) Toast.makeText(getApplicationContext(),"Invalid!",Toast.LENGTH_SHORT).show();
                     else{
-                        str = String.valueOf(evaluate(str));
-                        if(str == "NaN") result.setText("");
-                        else result.setText(str);
+                        String leftstr = str.substring(0, curpos);
+                        String rightstr = str.substring(curpos);
+                        leftstr = leftstr.substring(0, leftstr.length() - 1);
+
+                        str = leftstr + rightstr;
+                        equation.setText(str);
+                        equation.setSelection(curpos-1);
+
+                        if(str.length() == 0) result.setText("");
+                        else{
+                            str = evaluate(str);
+                            if(str == "NaN") result.setText("");
+                            else result.setText(str);
+                        }
                     }
                 }
             }
@@ -356,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -374,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -392,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -410,7 +416,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -429,7 +435,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setSelection(curpos+1);
 
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -447,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -465,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -483,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -501,7 +507,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -519,7 +525,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -537,7 +543,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -555,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -573,7 +579,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -591,7 +597,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -609,7 +615,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -627,7 +633,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -645,7 +651,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -663,7 +669,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
@@ -681,7 +687,7 @@ public class MainActivity extends AppCompatActivity {
                 equation.setText(str);
                 equation.setSelection(curpos+1);
 
-                str = String.valueOf(evaluate(str));
+                str = evaluate(str);
                 if(str == "NaN") result.setText("");
                 else result.setText(str);
             }
