@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 deg = false;
                 rad = true;
-                degrad.setText("REDIAN");
+                degrad.setText("RADIAN");
 
                 String str = equation.getText().toString();
                 str = evaluate(str);
