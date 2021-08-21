@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Expression exp = new Expression(str);
 
         if(deg) mXparser.setDegreesMode();
-        else if(rad) mXparser.setRadiansMode();
+        if(rad) mXparser.setRadiansMode();
 
         String res = String.valueOf(exp.calculate());
         if(res.charAt(res.length()-1) == '0' && res.charAt(res.length()-2) == '.') res = res.substring(0, res.length()-2);
@@ -46,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         degrad = findViewById(R.id.degrad);
         equation = findViewById(R.id.equation);
-        equation.setShowSoftInputOnFocus(false);
+
+        equation.setShowSoftInputOnFocus(false); // For OFF Keybord
+
         result = findViewById(R.id.result);
         degree = findViewById(R.id.degree);
         radian = findViewById(R.id.radian);
