@@ -4,8 +4,8 @@ Welcome to my Scientific Calculator App project! This Android Studio project is 
 
 ## Features
 
-- Arithmetic operations (addition, subtraction, multiplication, division, power, mod, lcm, gcd, square root, )
-- Advanced mathematical functions (trigonometric, logarithmic, exponential, etc.)
+- Arithmetic operations (addition, subtraction, multiplication, division)
+- Advanced mathematical functions (trigonometric, logarithmic, exponential, modular, lcm, gcd, square root etc.)
 - Support for parentheses and mathematical expressions
 - User-friendly interface for easy input and output
 
