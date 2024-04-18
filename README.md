@@ -5,9 +5,10 @@ Welcome to my Scientific Calculator App project! This Android Studio project is 
 ## Features
 
 - Arithmetic operations (addition, subtraction, multiplication, division)
-- Advanced mathematical functions (trigonometric, logarithmic, exponential, modular, lcm, gcd, square root, factorial and more...)
+- Advanced mathematical functions (trigonometric, logarithmic, exponential, modular, LCM, GCD, square root, factorial and more...)
 - Support for parentheses and mathematical expressions
 - User-friendly interface for easy input and output
+- Responsive Design.
 
 ## Screenshots
 
@@ -22,6 +23,8 @@ To get started with this project, follow these steps:
 1. Clone or download the repository to your local machine.
 2. Open the project in Android Studio.
 3. Build and run the project on an Android emulator or physical device.
+
+Also available apk file in the release section.
 
 ## Dependencies
 
@@ -46,4 +49,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 - Thanks to MathParser.org for providing the mXparser library.
 - Special thanks to [Android Studio](https://developer.android.com/studio) for providing a robust development environment.
-
